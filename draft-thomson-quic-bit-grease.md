@@ -71,48 +71,58 @@ This document uses terms and notational conventions from {{QUIC}}.
 
 The grease_quic_bit transport parameter (0xTBD) can be sent by both client and
 server.  The transport parameter is sent with an empty value; an endpoint that
-understands the transport parameter MUST treat receipt of a non-empty value as a
-connection error of type TRANSPORT_PARAMETER_ERROR.
+understands this transport parameter MUST treat receipt of a non-empty value as
+a connection error of type TRANSPORT_PARAMETER_ERROR.
 
 Advertising the grease_quic_bit transport parameter indicates that packets sent
-to this endpoint MAY include values other than 1 for the QUIC Bit.  The QUIC Bit
-is defined as the second-to-most significant bit of the first byte of QUIC
-packets (that is, the value 0x40).
+to this endpoint MAY set a value of 0 for the QUIC Bit.  The QUIC Bit is defined
+as the second-to-most significant bit of the first byte of QUIC packets (that
+is, the value 0x40).
 
 
 ## Clearing the QUIC Bit
 
 Endpoints that receive the grease_quic_bit transport parameter from a peer MAY
 set the QUIC Bit to any value in packets they sent to that peer.  Endpoints
-SHOULD set the QUIC Bit to an unpredictable value.  This includes Initial and
-Handshake packets sent after receiving transport parameters.
+SHOULD set the QUIC Bit to an unpredictable value unless another extension
+assigns specific meaning to the value of the bit.  All packets sent after
+receiving and processing transport parameters are affected, including Retry,
+Initial, and Handshake packets.
 
-A client MAY also clear the QUIC Bit in Initial packets sent to establish a new
-connection. A client can only clear the QUIC Bit if the packet includes a token
-provided by the server in a NEW_TOKEN frame on a connection where the server
-also included the grease_quic_bit transport parameter.  To allow for changes in
-server configuration, clients SHOULD set the QUIC Bit if the token was provided
-more than 7 days prior.
+A client MAY also clear the QUIC Bit in Initial packets that are sent to
+establish a new connection. A client can only clear the QUIC Bit if the packet
+includes a token provided by the server in a NEW_TOKEN frame on a connection
+where the server also included the grease_quic_bit transport parameter.  To
+allow for changes in server configuration, clients SHOULD set the QUIC Bit if
+the token was provided more than 7 days prior.
 
 
 ## Using the QUIC Bit
 
-Other extensions to QUIC that define semantics for the QUIC Bit can also be
-advertised in combination with the grease_quic_bit transport parameter.  In
-order for a receipient to distinguish between a randomized value and a value
-carrying information, extensions that use the QUIC Bit need a signal of mutual
-support prior to acting on any semantic.
+The purpose of this extension is to allow for the use of the QUIC Bit by later
+extensions.
+
+Extensions to QUIC that define semantics for the QUIC Bit can be negotiated at
+the same time as the grease_quic_bit transport parameter.  In this case, a
+recipient needs to be able to distinguish a randomized value from a value
+carrying information according to the extension.  Extensions that use the QUIC
+Bit MUST negotiate their use prior to acting on any semantic.  Endpoints MAY
+send a signal prior to this negotiation completing, but any value carried by the
+bit cannot be used until it is clear that the peer is using the extension.
 
 For example, an extension might define a transport parameter that is sent in
 addition to the grease_quic_bit transport parameter.  Though the value of the
-QUIC Bit in packets received by a peer might carry a semantic specific to that
-extension, they might also be randomized according to the definition of the
-grease_quic_bit extension.  Receiving the transport parameter for the extension
-confirms that a peer supports the semantic defined in the extension.  Thus, to
-avoid acting on a randomized signal, the extension can require that endpoints
-set the QUIC Bit according to the rules of the extension, but defer acting on
-the information conveyed until the transport parameter for the extension is
-received.
+QUIC Bit in packets received by a peer might be set according to rules defined
+by the extension, they might also be randomized according to the definition of
+the grease_quic_bit extension.  Receiving the transport parameter for the
+extension could be used to confirm that a peer supports the semantic defined in
+the extension.  To avoid acting on a randomized signal, the extension can
+require that endpoints set the QUIC Bit according to the rules of the extension,
+but defer acting on the information conveyed until the transport parameter for
+the extension is received.
+
+Extensions that define semantics for the QUIC Bit can be negotiated without
+using the grease_quic_bit transport parameter.
 
 
 # Security Considerations
