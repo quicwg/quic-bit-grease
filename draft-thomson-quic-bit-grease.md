@@ -25,8 +25,8 @@ informative:
 
 --- abstract
 
-This document describes a method for negotiating the requirement to send a fixed
-value for the second-to-most significant bit in QUIC packets.
+This document describes a method for negotiating the ability to send an
+arbitrary value for the second-to-most significant bit in QUIC packets.
 
 
 --- middle
@@ -39,16 +39,19 @@ characteristics that are defined as invariant
 {{?QUIC-INVARIANTS=I-D.ietf-quic-invariants}}, very little about the "wire
 image" {{?RFC8546}} of QUIC is visible.
 
-The second-to-most significant bit of the first byte in every QUIC packet -
-known as the "QUIC Bit" - is defined as having a fixed value of 1.  The purpose
-of this is to allow intermediaries and endpoints to cheaply and efficiently
-distinguish between QUIC and other protocols; see {{?DEMUX=RFC7983}} for a
-description of a scheme with which QUIC is designed to integrate.
+The second-to-most significant bit of the first byte in every QUIC packet is
+defined as having a fixed value of 1 in QUIC version 1 {{!QUIC}}.  This bit is
+The purpose of this is to allow intermediaries and endpoints to cheaply and
+efficiently distinguish between QUIC and other protocols; see {{?DEMUX=RFC7983}}
+for a description of a scheme with which QUIC is designed to integrate.  As this
+bit effectively identifies a packet as QUIC, it is sometimes referred to as the
+"QUIC Bit".
 
-Where endpoints and the intermediaries that support them do not depend on this
-value being fixed, the fixed value of this bit is more of liability than an
-asset.  If systems come to depend on a fixed value, then it might become
-infeasible to define a version of QUIC that attributes semantics to this bit.
+Where endpoints and the intermediaries that support them do not depend on the
+QUIC Bit having a fixed value, sending the same value in every packet is more of
+liability than an asset.  If systems come to depend on a fixed value, then it
+might become infeasible to define a version of QUIC that attributes semantics to
+this bit.
 
 In order to safeguard future use of this bit, this document defines a QUIC
 transport parameter that indicates that an endpoint is willing to receive QUIC
