@@ -40,8 +40,8 @@ characteristics that are defined as invariant
 image" {{?RFC8546}} of QUIC is visible.
 
 The second-to-most significant bit of the first byte in every QUIC packet is
-defined as having a fixed value of 1 in QUIC version 1 {{!QUIC}}.  The purpose
-of having a fixed value is to allow intermediaries and endpoints to efficiently
+defined as having a fixed value in QUIC version 1 {{!QUIC}}.  The purpose of
+having a fixed value is to allow intermediaries and endpoints to efficiently
 distinguish between QUIC and other protocols; see {{?DEMUX=RFC7983}} for a
 description of a scheme that QUIC can integrate with as a result.  As this bit
 effectively identifies a packet as QUIC, it is sometimes referred to as the
@@ -55,7 +55,9 @@ this bit.
 
 In order to safeguard future use of this bit, this document defines a QUIC
 transport parameter that indicates that an endpoint is willing to receive QUIC
-packets containing any value for this bit.
+packets containing any value for this bit.  By sending different values for this
+bit, the hope is that the value will remain available for future use
+{{?USE-IT=I-D.iab-use-it-or-lose-it}}.
 
 
 # Conventions and Definitions
