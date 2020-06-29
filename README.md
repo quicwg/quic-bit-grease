@@ -6,6 +6,7 @@ This is the working area for the individual Internet-Draft, "Greasing the QUIC B
 * [Individual Draft](https://tools.ietf.org/html/draft-thomson-quic-bit-grease)
 * [Compare Editor's Copy to Individual Draft](https://martinthomson.github.io/quic-bit-grease/#go.draft-thomson-quic-bit-grease.diff)
 
+
 ## Building the Draft
 
 Formatted text and HTML versions of the draft can be built using `make`.
