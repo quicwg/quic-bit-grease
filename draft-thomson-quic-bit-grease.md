@@ -69,7 +69,7 @@ This document uses terms and notational conventions from {{QUIC}}.
 
 # The Grease QUIC Bit Transport Parameter
 
-The grease_quic_bit transport parameter (0xTBD) can be sent by both client and
+The grease_quic_bit transport parameter (0x2ab2) can be sent by both client and
 server.  The transport parameter is sent with an empty value; an endpoint that
 understands this transport parameter MUST treat receipt of a non-empty value as
 a connection error of type TRANSPORT_PARAMETER_ERROR.
