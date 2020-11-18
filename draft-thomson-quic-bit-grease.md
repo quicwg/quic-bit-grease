@@ -161,7 +161,10 @@ Date:
 : Date of registration.
 
 Contact:
-: IETF QUIC Working Group (quic@ietf.org)
+: QUIC Working Group (quic@ietf.org)
+
+Change Controller:
+: IETF (iesg@ietf.org)
 
 Notes:
 : (none)
