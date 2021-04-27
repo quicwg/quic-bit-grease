@@ -1,6 +1,6 @@
 ---
 title: "Greasing the QUIC Bit"
-docname: draft-thomson-quic-bit-grease-latest
+docname: draft-ietf-quic-bit-grease-latest
 category: std
 
 ipr: trust200902
