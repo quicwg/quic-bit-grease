@@ -2,7 +2,7 @@
 
 This is the working area for the individual Internet-Draft, "Greasing the QUIC Bit".
 
-* [Editor's Copy](https://martinthomson.github.io/quic-bit-grease/#go.draft-thomson-quic-bit-grease.html)
+* [Editor's Copy](https://quicwg.org/quic-bit-grease/draft-ietf-quic-bit-grease.html)
 * [Individual Draft](https://tools.ietf.org/html/draft-thomson-quic-bit-grease)
 * [Compare Editor's Copy to Individual Draft](https://martinthomson.github.io/quic-bit-grease/#go.draft-thomson-quic-bit-grease.diff)
 
