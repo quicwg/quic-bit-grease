@@ -3,8 +3,8 @@
 This is the working area for the individual Internet-Draft, "Greasing the QUIC Bit".
 
 * [Editor's Copy](https://quicwg.org/quic-bit-grease/draft-ietf-quic-bit-grease.html)
-* [Individual Draft](https://dt.ietf.org/doc/html/draft-ietf-quic-bit-grease)
-* [Compare Editor's Copy to Individual Draft](https://quicwg.org/quic-bit-grease/#go.draft-ietf-quic-bit-grease.diff)
+* [Working Group Draft](https://dt.ietf.org/doc/html/draft-ietf-quic-bit-grease)
+* [Compare Editor's Copy to Working Group Draft](https://quicwg.org/quic-bit-grease/#go.draft-ietf-quic-bit-grease.diff)
 
 
 ## Building the Draft
