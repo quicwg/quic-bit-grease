@@ -33,10 +33,10 @@ arbitrary value for the second-to-most significant bit in QUIC packets.
 
 # Introduction
 
-QUIC {{!QUIC=I-D.ietf-quic-transport}} intentionally describes a very narrow set
+QUIC {{!QUIC=RFC9000}} intentionally describes a very narrow set
 of fields that are visible to entities other than endpoints.  Beyond those
 characteristics that are defined as invariant
-{{?QUIC-INVARIANTS=I-D.ietf-quic-invariants}}, very little about the "wire
+{{?QUIC-INVARIANTS=RFC8999}}, very little about the "wire
 image" {{?RFC8546}} of QUIC is visible.
 
 The second-to-most significant bit of the first byte in every QUIC packet is
