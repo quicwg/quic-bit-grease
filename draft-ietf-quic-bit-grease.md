@@ -118,13 +118,12 @@ bit cannot be used until it is clear that the peer is using the extension.
 For example, an extension might define a transport parameter that is sent in
 addition to the grease_quic_bit transport parameter.  Though the value of the
 QUIC Bit in packets received by a peer might be set according to rules defined
-by the extension, they might also be randomized according to the definition of
-the grease_quic_bit extension.  Receiving the transport parameter for the
-extension could be used to confirm that a peer supports the semantic defined in
-the extension.  To avoid acting on a randomized signal, the extension can
-require that endpoints set the QUIC Bit according to the rules of the extension,
-but defer acting on the information conveyed until the transport parameter for
-the extension is received.
+by the extension, they might also be randomized as specified in this document.
+Receiving the transport parameter for the extension could be used to confirm
+that a peer supports the semantic defined in the extension.  To avoid acting on
+a randomized signal, the extension can require that endpoints set the QUIC Bit
+according to the rules of the extension, but defer acting on the information
+conveyed until the transport parameter for the extension is received.
 
 Extensions that define semantics for the QUIC Bit can be negotiated without
 using the grease_quic_bit transport parameter.
