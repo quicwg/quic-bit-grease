@@ -95,7 +95,7 @@ receiving and processing transport parameters are affected, including Retry,
 Initial, and Handshake packets.
 
 A client MAY also clear the QUIC Bit in Initial packets that are sent prior to
-receiving the transport parameters.  A client can only clear the QUIC Bit if
+receiving transport parameters from the server.  A client can only clear the QUIC Bit if
 such packets include a token provided by the server in a NEW_TOKEN frame on a
 connection where the server also included the grease_quic_bit transport
 parameter.  To allow for changes in server configuration, clients SHOULD set
