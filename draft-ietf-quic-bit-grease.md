@@ -94,12 +94,12 @@ assigns specific meaning to the value of the bit.  All packets sent after
 receiving and processing transport parameters are affected, including Retry,
 Initial, and Handshake packets.
 
-A client MAY also clear the QUIC Bit in Initial packets that are sent to
-establish a new connection. A client can only clear the QUIC Bit if the packet
-includes a token provided by the server in a NEW_TOKEN frame on a connection
-where the server also included the grease_quic_bit transport parameter.  To
-allow for changes in server configuration, clients SHOULD set the QUIC Bit if
-the token was provided more than 7 days prior.
+A client MAY also clear the QUIC Bit in Initial packets that are sent prior to
+receiving transport parameters from the server.  A client can only clear the QUIC Bit if
+such packets include a token provided by the server in a NEW_TOKEN frame on a
+connection where the server also included the grease_quic_bit transport
+parameter.  To allow for changes in server configuration, clients SHOULD set
+the QUIC Bit if the token was provided more than 7 days prior.
 
 
 ## Using the QUIC Bit
