@@ -90,16 +90,21 @@ current handshake is used to determine what values can be sent in the QUIC Bit.
 Endpoints that receive the grease_quic_bit transport parameter from a peer MAY
 set the QUIC Bit to any value in packets they send to that peer.  Endpoints
 SHOULD set the QUIC Bit to an unpredictable value unless another extension
-assigns specific meaning to the value of the bit.  All packets sent after
-receiving and processing transport parameters are affected, including Retry,
-Initial, and Handshake packets.
+assigns specific meaning to the value of the bit.
+
+All packets sent after receiving and processing transport parameters might be
+affected, including Initial, Handshake, and Retry packets.
 
 A client MAY also clear the QUIC Bit in Initial packets that are sent prior to
-receiving transport parameters from the server.  A client can only clear the QUIC Bit if
-such packets include a token provided by the server in a NEW_TOKEN frame on a
-connection where the server also included the grease_quic_bit transport
-parameter.  To allow for changes in server configuration, clients SHOULD set
-the QUIC Bit if the token was provided more than 7 days prior.
+receiving transport parameters from the server.  A client can only clear the
+QUIC Bit if such packets include a token provided by the server in a NEW_TOKEN
+frame on a connection where the server also included the grease_quic_bit
+transport parameter.  To allow for changes in server configuration, clients
+SHOULD set the QUIC Bit if the token was provided more than 7 days prior.
+
+A server MUST clear the QUIC bit only after processing transport parameters from
+a client.  A server cannot remember that a client negotiated the extension in a
+previous connection and clear the QUIC Bit based on that information.
 
 
 ## Using the QUIC Bit
