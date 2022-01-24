@@ -116,16 +116,12 @@ Extensions to QUIC that define semantics for the QUIC Bit can be negotiated at
 the same time as the grease_quic_bit transport parameter.  In this case, a
 recipient needs to be able to distinguish a randomized value from a value
 carrying information according to the extension.  Extensions that use the QUIC
-Bit MUST negotiate their use prior to acting on any semantic.  Endpoints MAY
-send a signal prior to this negotiation completing, but any value carried by the
-bit cannot be used until it is clear that the peer is using the extension.
+Bit MUST negotiate their use prior to acting on any semantic.
 
 For example, an extension might define a transport parameter that is sent in
 addition to the grease_quic_bit transport parameter.  Though the value of the
 QUIC Bit in packets received by a peer might be set according to rules defined
 by the extension, they might also be randomized as specified in this document.
-Including both extensions allows for the QUIC Bit to be greased even if the
-alternative use is not supported.
 
 Receiving a transport parameter for an extension that uses the QUIC Bit could be
 used to confirm that a peer supports the semantic defined in the extension.  To
@@ -135,7 +131,9 @@ the information conveyed until the transport parameter for the extension is
 received.
 
 Extensions that define semantics for the QUIC Bit can be negotiated without
-using the grease_quic_bit transport parameter.
+using the grease_quic_bit transport parameter.  However, including both
+extensions allows for the QUIC Bit to be greased even if the alternative use is
+not supported.
 
 
 # Security Considerations
