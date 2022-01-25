@@ -107,9 +107,9 @@ a client.  A server cannot remember that a client negotiated the extension in a
 previous connection and clear the QUIC Bit based on that information.
 
 An endpoint cannot clear the QUIC Bit without knowing whether the peer supports
-the extension.  As stateless reset packets ({{Section 10.3 of QUIC}}) are only
+the extension.  As Stateless Reset packets ({{Section 10.3 of QUIC}}) are only
 used after a loss of connection state, endpoints are unlikely to be able to
-clear the QUIC Bit on stateless reset packets.
+clear the QUIC Bit on Stateless Reset packets.
 
 
 ## Using the QUIC Bit
