@@ -22,20 +22,20 @@ Little about this image is visible to passive observers. One field, the
 so-called QUIC bit, resides at the second-to-most significant bit of the first
 byte of every QUIC packet. RFC 9000 requires the QUIC bit to be set to a value
 of 1, with the purpose being to allow QUIC traffic to be easily distinguisable
-from other UDP-based traffic when they share a UDP port. This document defines a
+from some other UDP-based traffic when they share a UDP port. This document defines a
 behavioural extension, negotiated using transport parameters, that permits
-endpoints to use any value the QUIC bit. The intention of this
+endpoints to use any value for this bit. The intention of this
 extension is to exercise variation in the wire image in order to support future
 QUIC changes before systems ossify.
 
 Working Group Summary:
 
-The document is suucint. During adoption and WGLC there was sufficient review
+The document is succinct. During adoption and WGLC there was sufficient review
 and no major issues were raised or incidents occured.
 
 Document Quality:
 
-The document is succint and describes how to vary one bit, using
+The document is succinct and describes how to vary one bit, using
 well-established mechanisms. There are several implementations of the grease bit
 extension and several interoperable deployments deployed on the Internet.
 
