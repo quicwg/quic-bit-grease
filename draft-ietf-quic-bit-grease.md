@@ -57,7 +57,7 @@ In order to safeguard future use of this bit, this document defines a QUIC
 transport parameter that indicates that an endpoint is willing to receive QUIC
 packets containing any value for this bit.  By sending different values for this
 bit, the hope is that the value will remain available for future use
-{{?USE-IT=I-D.iab-use-it-or-lose-it}}.
+{{?USE-IT=RFC9170}}.
 
 
 # Conventions and Definitions
