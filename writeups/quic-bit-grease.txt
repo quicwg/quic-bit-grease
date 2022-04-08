@@ -19,14 +19,15 @@ Technical Summary:
 
 The "wire image" of QUIC packets is described in QUIC invariants (RFC 8999).
 Little about this image is visible to passive observers. One field, the
-so-called QUIC bit, resides at the second-to-most significant bit of the first
-byte of every QUIC packet. RFC 9000 requires the QUIC bit to be set to a value
+so-called QUIC Bit, resides at the second-to-most significant bit of the first
+byte of every QUIC packet. RFC 9000 requires the QUIC Bit to be set to a value
 of 1, with the purpose being to allow QUIC traffic to be easily distinguisable
-from some other UDP-based traffic when they share a UDP port. This document defines a
-behavioural extension, negotiated using transport parameters, that permits
-endpoints to use any value for this bit. The intention of this
-extension is to exercise variation in the wire image in order to support future
-QUIC changes before systems ossify.
+from some other UDP-based traffic when they share a UDP port. This document
+defines a behavioural extension, negotiated using transport parameters, that
+permits endpoints to use any value for this bit. The intention of this extension
+is to exercise variation in the wire image (i.e, "Grease" the QUIC Bit) in order
+to support future QUIC changes before systems ossify (see RFC 9170 for more
+background).
 
 Working Group Summary:
 
@@ -146,8 +147,8 @@ registry, that allocations procedures for future registrations are defined, and
 a reasonable name for the new registry has been suggested (see RFC 8126).
 
 This document registers a new Transport Parameter. This is a permanent
-registration in the range 0x00-0x3f, which requires Standards Action or IESG
-approval.
+registration, greater than 0x3f, which operates uner the Specification Required
+policy.
 
 The registration conforms to the registration requirements of IANA.
 
