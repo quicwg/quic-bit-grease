@@ -94,12 +94,12 @@ assigns specific meaning to the value of the bit.
 All packets sent after receiving and processing transport parameters might be
 affected, including Initial, Handshake, and Retry packets.
 
-A client MAY also clear the QUIC Bit in packets that are sent prior to receiving
-transport parameters from the server.  However, a client MUST NOT clear the QUIC
-Bit unless the Initial packets it sends include a token provided by the server
-in a NEW_TOKEN frame ({{Section 19.7 of QUIC}}) received less than 604800 seconds (7 days) prior on
-a connection where the server also included the grease_quic_bit transport
-parameter.
+A client MAY also clear the QUIC Bit in Initial, Handshake, or 0-RTT packets
+that are sent prior to receiving transport parameters from the server.  However,
+a client MUST NOT clear the QUIC Bit unless the Initial packets it sends include
+a token provided by the server in a NEW_TOKEN frame ({{Section 19.7 of QUIC}}),
+received less than 604800 seconds (7 days) prior on a connection where the
+server also included the grease_quic_bit transport parameter.
 
 {:aside}
 > This 7 day limit allows for changes in server configuration.  If server
