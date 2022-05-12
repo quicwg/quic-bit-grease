@@ -98,9 +98,12 @@ A client MAY also clear the QUIC Bit in Initial packets that are sent prior to
 receiving transport parameters from the server.  A client can only clear the
 QUIC Bit if such packets include a token provided by the server in a NEW_TOKEN
 frame ({{Section 19.7 of QUIC}}) on a connection where the server also included
-the grease_quic_bit transport parameter.  To allow for changes in server
-configuration, clients SHOULD set the QUIC Bit if the token was provided more
-than 7 days prior.
+the grease_quic_bit transport parameter.
+
+To allow for changes in server configuration, clients MUST set the QUIC Bit if
+the token was provided more than 7 days prior.  If a client does not set the
+QUIC Bit, then it is possible that a server will drop packets if it is not
+longer able to accept them, resulting in connection failures.
 
 A server MUST clear the QUIC bit only after processing transport parameters from
 a client.  A server cannot remember that a client negotiated the extension in a
