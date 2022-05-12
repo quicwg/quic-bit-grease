@@ -102,7 +102,7 @@ the grease_quic_bit transport parameter.
 
 To allow for changes in server configuration, clients MUST set the QUIC Bit if
 the token was provided more than 7 days prior.  If a client does not set the
-QUIC Bit, then it is possible that a server will drop packets if it is not
+QUIC Bit, then it is possible that a server will drop packets if it is no
 longer able to accept them, resulting in connection failures.
 
 A server MUST clear the QUIC bit only after processing transport parameters from
