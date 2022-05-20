@@ -93,26 +93,27 @@ assigns specific meaning to the value of the bit.
 All packets sent after receiving and processing transport parameters might be
 affected, including Initial, Handshake, and Retry packets.
 
-A client MAY also clear the QUIC Bit in Initial, Handshake, or 0-RTT packets
+A client MAY also set the QUIC Bit to 0 in Initial, Handshake, or 0-RTT packets
 that are sent prior to receiving transport parameters from the server.  However,
-a client MUST NOT clear the QUIC Bit unless the Initial packets it sends include
-a token provided by the server in a NEW_TOKEN frame ({{Section 19.7 of QUIC}}),
-received less than 604800 seconds (7 days) prior on a connection where the
-server also included the grease_quic_bit transport parameter.
+a client MUST NOT set the QUIC Bit to 0 unless the Initial packets it sends
+include a token provided by the server in a NEW_TOKEN frame ({{Section 19.7 of
+QUIC}}), received less than 604800 seconds (7 days) prior on a connection where
+the server also included the grease_quic_bit transport parameter.
 
 {:aside}
 > This 7 day limit allows for changes in server configuration.  If server
 > configuration changes and a client does not set the QUIC Bit, then it is
 > possible that a server will drop packets, resulting in connection failures.
 
-A server MUST clear the QUIC bit only after processing transport parameters from
-a client.  A server MUST NOT remember that a client negotiated the extension in
-a previous connection and clear the QUIC Bit based on that information.
+A server MUST set the QUIC bit to 0 only after processing transport parameters
+from a client.  A server MUST NOT remember that a client negotiated the
+extension in a previous connection and set the QUIC Bit to 0 based on that
+information.
 
-An endpoint MUST NOT clear the QUIC Bit without knowing whether the peer supports
-the extension.  As Stateless Reset packets ({{Section 10.3 of QUIC}}) are only
-used after a loss of connection state, endpoints are unlikely to be able to
-clear the QUIC Bit on Stateless Reset packets.
+An endpoint MUST NOT set the QUIC Bit to 0 without knowing whether the peer
+supports the extension.  As Stateless Reset packets ({{Section 10.3 of QUIC}})
+are only used after a loss of connection state, endpoints are unlikely to be
+able to set the QUIC Bit to 0 on Stateless Reset packets.
 
 
 ## Using the QUIC Bit
