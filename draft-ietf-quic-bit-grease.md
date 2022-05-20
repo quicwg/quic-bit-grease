@@ -78,11 +78,6 @@ packets with the QUIC Bit set to a value of 0.  The QUIC Bit is defined as the
 second-to-most significant bit of the first byte of QUIC packets (that is, the
 value 0x40).
 
-A server MUST respect the value it previously provided for the grease_quic_bit
-transport parameter if it accepts 0-RTT.  A client MAY forget the value.  In all
-other cases, only the presence or absence of the transport parameter in the
-current handshake is used to determine what values can be sent in the QUIC Bit.
-
 
 ## Clearing the QUIC Bit
 
