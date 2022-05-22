@@ -157,7 +157,7 @@ network classification to identify threats.
 # IANA Considerations
 
 This document registers the grease_quic_bit transport parameter in the "QUIC
-Transport Parameters" registry established in Section 22.2 of {{QUIC}}.  The
+Transport Parameters" registry established in {{Section 22.2 of QUIC}}.  The
 following fields are registered:
 
 Value:
