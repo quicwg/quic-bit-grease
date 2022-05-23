@@ -70,8 +70,8 @@ This document uses terms and notational conventions from {{QUIC}}.
 
 The grease_quic_bit transport parameter (0x2ab2) can be sent by both client and
 server.  The transport parameter is sent with an empty value; an endpoint that
-understands this transport parameter MUST treat receipt of a non-empty value as
-a connection error of type TRANSPORT_PARAMETER_ERROR.
+understands this transport parameter MUST treat receipt of a non-empty value of
+the transport parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.
 
 An endpoint that advertises the grease_quic_bit transport parameter MUST accept
 packets with the QUIC Bit set to a value of 0.  The QUIC Bit is defined as the
