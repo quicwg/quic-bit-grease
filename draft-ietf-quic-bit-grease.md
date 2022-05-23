@@ -73,10 +73,10 @@ server.  The transport parameter is sent with an empty value; an endpoint that
 understands this transport parameter MUST treat receipt of a non-empty value as
 a connection error of type TRANSPORT_PARAMETER_ERROR.
 
-Advertising the grease_quic_bit transport parameter indicates that packets sent
-to this endpoint MAY set a value of 0 for the QUIC Bit.  The QUIC Bit is defined
-as the second-to-most significant bit of the first byte of QUIC packets (that
-is, the value 0x40).
+An endpoint that advertises the grease_quic_bit transport parameter MUST accept
+packets with the QUIC Bit set to a value of 0.  The QUIC Bit is defined as the
+second-to-most significant bit of the first byte of QUIC packets (that is, the
+value 0x40).
 
 A server MUST respect the value it previously provided for the grease_quic_bit
 transport parameter if it accepts 0-RTT.  A client MAY forget the value.  In all
@@ -107,10 +107,10 @@ server also included the grease_quic_bit transport parameter.
 > possible that a server will drop packets, resulting in connection failures.
 
 A server MUST clear the QUIC bit only after processing transport parameters from
-a client.  A server cannot remember that a client negotiated the extension in a
-previous connection and clear the QUIC Bit based on that information.
+a client.  A server MUST NOT remember that a client negotiated the extension in
+a previous connection and clear the QUIC Bit based on that information.
 
-An endpoint cannot clear the QUIC Bit without knowing whether the peer supports
+An endpoint MUST NOT clear the QUIC Bit without knowing whether the peer supports
 the extension.  As Stateless Reset packets ({{Section 10.3 of QUIC}}) are only
 used after a loss of connection state, endpoints are unlikely to be able to
 clear the QUIC Bit on Stateless Reset packets.
