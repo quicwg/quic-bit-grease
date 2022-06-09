@@ -33,18 +33,17 @@ arbitrary value for the second-to-most significant bit in QUIC packets.
 
 # Introduction
 
-QUIC {{!QUIC=RFC9000}} intentionally describes a very narrow set
-of fields that are visible to entities other than endpoints.  Beyond those
-characteristics that are defined as invariant
-{{?QUIC-INVARIANTS=RFC8999}}, very little about the "wire
-image" {{?RFC8546}} of QUIC is visible.
+QUIC {{!QUIC=RFC9000}} intentionally describes a very narrow set of fields that
+are visible to entities other than endpoints.  Beyond those characteristics that
+are defined as invariant {{?QUIC-INVARIANTS=RFC8999}}, very little about the
+"wire image" {{?RFC8546}} of QUIC is visible.
 
 The second-to-most significant bit of the first byte in every QUIC packet is
 defined as having a fixed value in QUIC version 1 {{!QUIC}}.  The purpose of
-having a fixed value is to allow QUIC to be efficiently distinguished from
-other protocols; see {{?DEMUX=RFC7983}} for a description of a system that might
-use this property.  As this bit can identify a packet as QUIC, it is sometimes
-referred to as the "QUIC Bit".
+having a fixed value is to allow QUIC to be efficiently distinguished from other
+protocols; see {{?DEMUX=I-D.ietf-avtcore-rfc7983bis}} for a description of a
+system that might use this property.  As this bit can identify a packet as QUIC,
+it is sometimes referred to as the "QUIC Bit".
 
 Where endpoints and the intermediaries that support them do not depend on the
 QUIC Bit having a fixed value, sending the same value in every packet is more of
