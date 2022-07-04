@@ -82,7 +82,9 @@ value 0x40).
 
 Endpoints that receive the grease_quic_bit transport parameter from a peer
 SHOULD set the QUIC Bit to an unpredictable value unless another extension
-assigns specific meaning to the value of the bit.
+assigns specific meaning to the value of the bit.  When not constrained to
+provide a specific value, endpoints can set the QUIC Bit to a fresh random value
+for each packet.
 
 Endpoints can set the QUIC Bit to 0 on all packets that are sent after receiving
 and processing transport parameters. This could include Initial, Handshake, and
