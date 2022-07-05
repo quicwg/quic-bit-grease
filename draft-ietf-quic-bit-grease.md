@@ -147,8 +147,8 @@ entities that can rely on endpoint cooperation.  However, this change makes the
 task of identifying QUIC more difficult without cooperation of endpoints.  This
 sometimes works counter to the security goals of network operators who rely on
 network classification to identify threats; see
-{{?MANAGEABILITY=I-D.ietf-quic-manageability}} for a more comprehensive
-treatment of this topic.
+{{Section 3.1 of ?MANAGEABILITY=I-D.ietf-quic-manageability}} for a more
+comprehensive treatment of this topic.
 
 
 # IANA Considerations
