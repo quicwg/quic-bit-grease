@@ -1,0 +1,126 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2020-10-08T00:04:15.539269+00:00",
+  "repo": "martinthomson/quic-bit-grease",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 3,
+      "id": "MDU6SXNzdWU3MTUwOTYxMDA=",
+      "title": "Specify whether storing grease_quic_bit TP is mandatory",
+      "url": "https://github.com/martinthomson/quic-bit-grease/issues/3",
+      "state": "CLOSED",
+      "author": "dtikhonov",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The transport I-D 31 [states](https://tools.ietf.org/html/draft-ietf-quic-transport-31#section-7.4.1):\r\n\r\n```\r\n   The definition of a new transport parameter (Section 7.4.2) MUST\r\n   specify whether storing the transport parameter for 0-RTT is\r\n   mandatory, optional, or prohibited.  A client need not store a\r\n   transport parameter it cannot process.\r\n```\r\n\r\nThis information is missing from [draft-thomson-quic-bit-grease-00](https://tools.ietf.org/html/draft-thomson-quic-bit-grease-00#section-3).",
+      "createdAt": "2020-10-05T19:18:07Z",
+      "updatedAt": "2020-10-06T04:38:37Z",
+      "closedAt": "2020-10-06T04:38:37Z",
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDQxMTQ1ODg0",
+      "title": "Add an extra blank line",
+      "url": "https://github.com/martinthomson/quic-bit-grease/pull/1",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2020-06-29T01:14:14Z",
+      "updatedAt": "2020-06-29T01:16:27Z",
+      "baseRepository": "martinthomson/quic-bit-grease",
+      "baseRefName": "main",
+      "baseRefOid": "6c5874a7342dbdf38f378104b7f44a61007f4216",
+      "headRepository": "martinthomson/quic-bit-grease",
+      "headRefName": "spacing",
+      "headRefOid": "5201761c1a7f448598991666e4f60d91115f7450",
+      "closedAt": "2020-06-29T01:16:27Z",
+      "mergedAt": "2020-06-29T01:16:27Z",
+      "mergedBy": "martinthomson",
+      "mergeCommit": {
+        "oid": "d97d09c6eaff248c92966db96a1748f144f6ef9c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDQxMTQ2ODE5",
+      "title": "Reword",
+      "url": "https://github.com/martinthomson/quic-bit-grease/pull/2",
+      "state": "OPEN",
+      "author": "martinthomson",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "This was unclear as it wasn't clear which extension was operative in the sentence.",
+      "createdAt": "2020-06-29T01:19:09Z",
+      "updatedAt": "2020-06-29T01:19:09Z",
+      "baseRepository": "martinthomson/quic-bit-grease",
+      "baseRefName": "main",
+      "baseRefOid": "d97d09c6eaff248c92966db96a1748f144f6ef9c",
+      "headRepository": "martinthomson/quic-bit-grease",
+      "headRefName": "reword-two-extensions",
+      "headRefOid": "dacb03d729cd3b6b5049c389584f185dcb5b5e3d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
