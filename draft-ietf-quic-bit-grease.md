@@ -40,10 +40,10 @@ are defined as invariant {{?QUIC-INVARIANTS=RFC8999}}, very little about the
 
 The second-to-most significant bit of the first byte in every QUIC packet is
 defined as having a fixed value in QUIC version 1 {{!QUIC}}.  The purpose of
-having a fixed value is to allow QUIC to be efficiently distinguished from other
-protocols; see {{?DEMUX=I-D.ietf-avtcore-rfc7983bis}} for a description of a
-system that might use this property.  As this bit can identify a packet as QUIC,
-it is sometimes referred to as the "QUIC Bit".
+having a fixed value is to allow endpoints to efficiently distinguish QUIC from
+other protocols; see {{?DEMUX=I-D.ietf-avtcore-rfc7983bis}} for a description of
+a system that might use this property.  As this bit can identify a packet as
+QUIC, it is sometimes referred to as the "QUIC Bit".
 
 Where endpoints and the intermediaries that support them do not depend on the
 QUIC Bit having a fixed value, sending the same value in every packet is more of
@@ -148,7 +148,9 @@ This document introduces no new security considerations for endpoints or
 entities that can rely on endpoint cooperation.  However, this change makes the
 task of identifying QUIC more difficult without cooperation of endpoints.  This
 sometimes works counter to the security goals of network operators who rely on
-network classification to identify threats.
+network classification to identify threats; see
+{{Section 3.1 of ?MANAGEABILITY=I-D.ietf-quic-manageability}} for a more
+comprehensive treatment of this topic.
 
 
 # IANA Considerations
