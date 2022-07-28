@@ -36,9 +36,9 @@ arbitrary value for the second-most significant bit in QUIC packets.
 
 # Introduction
 
-QUIC Invariants {{!QUIC-INV=RFC8999}} intentionally describes a very narrow set
-of fields that are visible to entities other than endpoints.  Beyond those
-characteristics that are invariant, very little about the "wire image"
+QUIC Invariants {{!QUIC-INVARIANTS=RFC8999}} intentionally describes a very
+narrow set of fields that are visible to entities other than endpoints.  Beyond
+those characteristics that are invariant, very little about the "wire image"
 {{?RFC8546}} of QUIC is visible.
 
 The second-most significant bit of the first byte in every QUIC packet is
