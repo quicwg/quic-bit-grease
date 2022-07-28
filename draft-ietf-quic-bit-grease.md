@@ -36,17 +36,17 @@ arbitrary value for the second-most significant bit in QUIC packets.
 
 # Introduction
 
-QUIC {{!QUIC=RFC9000}} intentionally describes a very narrow set of fields that
-are visible to entities other than endpoints.  Beyond those characteristics that
-are defined as invariant {{?QUIC-INVARIANTS=RFC8999}}, very little about the
-"wire image" {{?RFC8546}} of QUIC is visible.
+QUIC Invariants {{!QUIC-INV=RFC8999}} intentionally describes a very narrow set
+of fields that are visible to entities other than endpoints.  Beyond those
+characteristics that are invariant, very little about the "wire image"
+{{?RFC8546}} of QUIC is visible.
 
 The second-most significant bit of the first byte in every QUIC packet is
-defined as having a fixed value in QUIC version 1 {{!QUIC}}.  The purpose of
-having a fixed value is to allow endpoints to efficiently distinguish QUIC from
-other protocols; see {{?DEMUX=I-D.ietf-avtcore-rfc7983bis}} for a description of
-a system that might use this property.  As this bit can identify a packet as
-QUIC, it is sometimes referred to as the "QUIC Bit".
+defined as having a fixed value in QUIC version 1 {{!QUIC=RFC9000}}.  The
+purpose of having a fixed value is to allow endpoints to efficiently distinguish
+QUIC from other protocols; see {{?DEMUX=I-D.ietf-avtcore-rfc7983bis}} for a
+description of a system that might use this property.  As this bit can identify
+a packet as QUIC, it is sometimes referred to as the "QUIC Bit".
 
 Where endpoints and the intermediaries that support them do not depend on the
 QUIC Bit having a fixed value, sending the same value in every packet is more of
@@ -70,10 +70,11 @@ This document uses terms and notational conventions from {{QUIC}}.
 
 # The Grease QUIC Bit Transport Parameter
 
-The grease_quic_bit transport parameter (0x2ab2) can be sent by both client and
-server.  The transport parameter is sent with an empty value; an endpoint that
-understands this transport parameter MUST treat receipt of a non-empty value of
-the transport parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.
+The grease_quic_bit transport parameter (0x2ab2) is defined for QUIC version 1
+{{!QUIC}}.  This transport parameter can be sent by both client and server.  The
+transport parameter is sent with an empty value; an endpoint that understands
+this transport parameter MUST treat receipt of a non-empty value of the
+transport parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.
 
 An endpoint that advertises the grease_quic_bit transport parameter MUST accept
 packets with the QUIC Bit set to a value of 0.  The QUIC Bit is defined as the
