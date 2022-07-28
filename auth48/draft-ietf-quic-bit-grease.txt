@@ -2,50 +2,33 @@
 
 
 
-quic                                                          M. Thomson
-Internet-Draft                                                   Mozilla
-Intended status: Standards Track                             9 June 2022
-Expires: 11 December 2022
+Internet Engineering Task Force (IETF)                        M. Thomson
+Request for Comments: 9287                                       Mozilla
+Category: Standards Track                                   28 July 2022
+ISSN: 2070-1721
 
 
                          Greasing the QUIC Bit
-                   draft-ietf-quic-bit-grease-latest
 
 Abstract
 
    This document describes a method for negotiating the ability to send
-   an arbitrary value for the second-to-most significant bit in QUIC
+   an arbitrary value for the second-most significant bit in QUIC
    packets.
-
-Discussion Venues
-
-   This note is to be removed before publishing as an RFC.
-
-   Discussion of this document takes place on the QUIC Working Group
-   mailing list (quic@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/browse/quic/
-   (https://mailarchive.ietf.org/arch/browse/quic/).
-
-   Source for this draft and an issue tracker can be found at
-   https://github.com/quicwg/quic-bit-grease (https://github.com/quicwg/
-   quic-bit-grease).
 
 Status of This Memo
 
-   This Internet-Draft is submitted in full conformance with the
-   provisions of BCP 78 and BCP 79.
+   This is an Internet Standards Track document.
 
-   Internet-Drafts are working documents of the Internet Engineering
-   Task Force (IETF).  Note that other groups may also distribute
-   working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at https://datatracker.ietf.org/drafts/current/.
+   This document is a product of the Internet Engineering Task Force
+   (IETF).  It represents the consensus of the IETF community.  It has
+   received public review and has been approved for publication by the
+   Internet Engineering Steering Group (IESG).  Further information on
+   Internet Standards is available in Section 2 of RFC 7841.
 
-   Internet-Drafts are draft documents valid for a maximum of six months
-   and may be updated, replaced, or obsoleted by other documents at any
-   time.  It is inappropriate to use Internet-Drafts as reference
-   material or to cite them other than as "work in progress."
-
-   This Internet-Draft will expire on 11 December 2022.
+   Information about the current status of this document, any errata,
+   and how to provide feedback on it may be obtained at
+   https://www.rfc-editor.org/info/rfc9287.
 
 Copyright Notice
 
@@ -53,13 +36,14 @@ Copyright Notice
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents (https://trustee.ietf.org/
-   license-info) in effect on the date of publication of this document.
-   Please review these documents carefully, as they describe your rights
-   and restrictions with respect to this document.  Code Components
-   extracted from this document must include Revised BSD License text as
-   described in Section 4.e of the Trust Legal Provisions and are
-   provided without warranty as described in the Revised BSD License.
+   Provisions Relating to IETF Documents
+   (https://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Revised BSD License text as described in Section 4.e of the
+   Trust Legal Provisions and are provided without warranty as described
+   in the Revised BSD License.
 
 Table of Contents
 
@@ -77,24 +61,24 @@ Table of Contents
 
 1.  Introduction
 
-   QUIC [QUIC] intentionally describes a very narrow set of fields that
-   are visible to entities other than endpoints.  Beyond those
-   characteristics that are defined as invariant [QUIC-INVARIANTS], very
-   little about the "wire image" [RFC8546] of QUIC is visible.
+   QUIC Invariants [QUIC-INV] intentionally describes a very narrow set
+   of fields that are visible to entities other than endpoints.  Beyond
+   those characteristics that are invariant, very little about the "wire
+   image" [RFC8546] of QUIC is visible.
 
-   The second-to-most significant bit of the first byte in every QUIC
+   The second-most significant bit of the first byte in every QUIC
    packet is defined as having a fixed value in QUIC version 1 [QUIC].
-   The purpose of having a fixed value is to allow QUIC to be
-   efficiently distinguished from other protocols; see [DEMUX] for a
+   The purpose of having a fixed value is to allow endpoints to
+   efficiently distinguish QUIC from other protocols; see [DEMUX] for a
    description of a system that might use this property.  As this bit
    can identify a packet as QUIC, it is sometimes referred to as the
    "QUIC Bit".
 
    Where endpoints and the intermediaries that support them do not
    depend on the QUIC Bit having a fixed value, sending the same value
-   in every packet is more of liability than an asset.  If systems come
-   to depend on a fixed value, then it might become infeasible to define
-   a version of QUIC that attributes semantics to this bit.
+   in every packet is more of a liability than an asset.  If systems
+   come to depend on a fixed value, then it might become infeasible to
+   define a version of QUIC that attributes semantics to this bit.
 
    In order to safeguard future use of this bit, this document defines a
    QUIC transport parameter that indicates that an endpoint is willing
@@ -114,7 +98,8 @@ Table of Contents
 
 3.  The Grease QUIC Bit Transport Parameter
 
-   The grease_quic_bit transport parameter (0x2ab2) can be sent by both
+   The grease_quic_bit transport parameter (0x2ab2) is defined for QUIC
+   version 1 [QUIC].  This transport parameter can be sent by both
    client and server.  The transport parameter is sent with an empty
    value; an endpoint that understands this transport parameter MUST
    treat receipt of a non-empty value of the transport parameter as a
@@ -122,14 +107,16 @@ Table of Contents
 
    An endpoint that advertises the grease_quic_bit transport parameter
    MUST accept packets with the QUIC Bit set to a value of 0.  The QUIC
-   Bit is defined as the second-to-most significant bit of the first
-   byte of QUIC packets (that is, the value 0x40).
+   Bit is defined as the second-most significant bit of the first byte
+   of QUIC packets (that is, the value 0x40).
 
 3.1.  Clearing the QUIC Bit
 
    Endpoints that receive the grease_quic_bit transport parameter from a
    peer SHOULD set the QUIC Bit to an unpredictable value unless another
-   extension assigns specific meaning to the value of the bit.
+   extension assigns specific meaning to the value of the bit.  When not
+   constrained to provide a specific value, endpoints can set the QUIC
+   Bit to a fresh random value for each packet.
 
    Endpoints can set the QUIC Bit to 0 on all packets that are sent
    after receiving and processing transport parameters.  This could
@@ -143,12 +130,12 @@ Table of Contents
    than 604800 seconds (7 days) prior on a connection where the server
    also included the grease_quic_bit transport parameter.
 
-      |  This 7 day limit allows for changes in server configuration.
+      |  This 7-day limit allows for changes in server configuration.
       |  If server configuration changes and a client does not set the
       |  QUIC Bit, then it is possible that a server will drop packets,
       |  resulting in connection failures.
 
-   A server MUST set the QUIC bit to 0 only after processing transport
+   A server MUST set the QUIC Bit to 0 only after processing transport
    parameters from a client.  A server MUST NOT remember that a client
    negotiated the extension in a previous connection and set the QUIC
    Bit to 0 based on that information.
@@ -177,11 +164,11 @@ Table of Contents
    according to rules defined by the extension, they might also be
    randomized as specified in this document.
 
-   Receiving a transport parameter for an extension that uses the QUIC
-   Bit could be used to confirm that a peer supports the semantic
+   The receipt of a transport parameter for an extension that uses the
+   QUIC Bit could be used to confirm that a peer supports the semantic
    defined in the extension.  To avoid acting on a randomized signal,
    the extension can require that endpoints set the QUIC Bit according
-   to the rules of the extension, but defer acting on the information
+   to the rules of the extension but defer acting on the information
    conveyed until the transport parameter for the extension is received.
 
    Extensions that define semantics for the QUIC Bit can be negotiated
@@ -196,7 +183,8 @@ Table of Contents
    change makes the task of identifying QUIC more difficult without
    cooperation of endpoints.  This sometimes works counter to the
    security goals of network operators who rely on network
-   classification to identify threats.
+   classification to identify threats; see Section 3.1 of
+   [MANAGEABILITY] for a more comprehensive treatment of this topic.
 
 5.  IANA Considerations
 
@@ -210,13 +198,13 @@ Table of Contents
 
    Status:  Permanent
 
-   Specification:  This document.
+   Specification:  RFC 9287
 
-   Date:  Date of registration.
-
-   Contact:  QUIC Working Group (quic@ietf.org)
+   Date:  2022-07-13
 
    Change Controller:  IETF (iesg@ietf.org)
+
+   Contact:  QUIC Working Group (quic@ietf.org)
 
    Notes:  (none)
 
@@ -228,6 +216,10 @@ Table of Contents
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/rfc/rfc9000>.
+
+   [QUIC-INV] Thomson, M., "Version-Independent Properties of QUIC",
+              RFC 8999, DOI 10.17487/RFC8999, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc8999>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -242,14 +234,16 @@ Table of Contents
 
    [DEMUX]    Aboba, B., Salgueiro, G., and C. Perkins, "Multiplexing
               Scheme Updates for QUIC", Work in Progress, Internet-
-              Draft, draft-ietf-avtcore-rfc7983bis-04, 12 May 2022,
+              Draft, draft-ietf-avtcore-rfc7983bis-05, 30 June 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-avtcore-
-              rfc7983bis-04>.
+              rfc7983bis-05>.
 
-   [QUIC-INVARIANTS]
-              Thomson, M., "Version-Independent Properties of QUIC",
-              RFC 8999, DOI 10.17487/RFC8999, May 2021,
-              <https://www.rfc-editor.org/rfc/rfc8999>.
+   [MANAGEABILITY]
+              Kuehlewind, M. and B. Trammell, "Manageability of the QUIC
+              Transport Protocol", Work in Progress, Internet-Draft,
+              draft-ietf-quic-manageability-18, 15 July 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
+              manageability-18>.
 
    [RFC8546]  Trammell, B. and M. Kuehlewind, "The Wire Image of a
               Network Protocol", RFC 8546, DOI 10.17487/RFC8546, April

@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" class="Internet-Draft">
+<html lang="en" class="RFC">
 <head>
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Greasing the QUIC Bit</title>
+<title>RFC 9287: Greasing the QUIC Bit</title>
 <meta content="Martin Thomson" name="author">
 <meta content="
        This document describes a method for negotiating the ability to send an
-arbitrary value for the second-to-most significant bit in QUIC packets. 
+arbitrary value for the second-most significant bit in QUIC packets. 
     " name="description">
-<meta content="xml2rfc 3.12.10" name="generator">
-<meta content="Internet-Draft" name="keyword">
-<meta content="draft-ietf-quic-bit-grease-latest" name="ietf.draft">
+<meta content="xml2rfc 3.13.0" name="generator">
+<meta content="Header" name="keyword">
+<meta content="Path signal" name="keyword">
+<meta content="9287" name="rfc.number">
 <!-- Generator version information:
-  xml2rfc 3.12.10
+  xml2rfc 3.13.0
     Python 3.10.4
     appdirs 1.4.4
     ConfigArgParse 1.5.3
-    google-i18n-address 2.5.1
+    google-i18n-address 2.5.2
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 3.1.2
     kitchen 1.2.6
-    lxml 4.8.0
-    MarkupSafe 2.0.1
-    pycountry 20.7.3
+    lxml 4.9.1
+    MarkupSafe 2.1.1
+    pycountry 22.3.5
     pyflakes 2.4.0
     PyYAML 6.0
     requests 2.27.1
@@ -638,6 +639,11 @@ hr {
   font-weight: bold;
   min-width: 7em;
 }
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
 .references dd {
   margin-left: 8em;
   overflow: auto;
@@ -1021,35 +1027,38 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 }
 </style>
 
-</head>
+<link href="https://dx.doi.org/10.17487/rfc9287" rel="alternate">
+  <link href="urn:issn:2070-1721" rel="alternate">
+  <link href="https://datatracker.ietf.org/doc/draft-ietf-quic-bit-grease-latest" rel="prev">
+  </head>
 <body>
 <table class="ears">
 <thead><tr>
-<td class="left">Internet-Draft</td>
+<td class="left">RFC 9287</td>
 <td class="center">Greasing the QUIC Bit</td>
-<td class="right">June 2022</td>
+<td class="right">July 2022</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Thomson</td>
-<td class="center">Expires 11 December 2022</td>
+<td class="center">Standards Track</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
 <div id="external-metadata" class="document-information"></div>
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
-<dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">quic</dd>
-<dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-quic-bit-grease-latest</dd>
+<dt class="label-stream">Stream:</dt>
+<dd class="stream">Internet Engineering Task Force (IETF)</dd>
+<dt class="label-rfc">RFC:</dt>
+<dd class="rfc"><a href="https://www.rfc-editor.org/rfc/rfc9287" class="eref">9287</a></dd>
+<dt class="label-category">Category:</dt>
+<dd class="category">Standards Track</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-06-09" class="published">9 June 2022</time>
+<time datetime="2022-07-28" class="published">28 July 2022</time>
     </dd>
-<dt class="label-intended-status">Intended Status:</dt>
-<dd class="intended-status">Standards Track</dd>
-<dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-12-11">11 December 2022</time></dd>
+<dt class="label-issn">ISSN:</dt>
+<dd class="issn">2070-1721</dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1059,22 +1068,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
+<h1 id="rfcnum">RFC 9287</h1>
 <h1 id="title">Greasing the QUIC Bit</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document describes a method for negotiating the ability to send an
-arbitrary value for the second-to-most significant bit in QUIC packets.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-</section>
-<section class="note rfcEditorRemove" id="section-note.1">
-      <h2 id="name-discussion-venues">
-<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
-      </h2>
-<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
-<p id="section-note.1-2">Discussion of this document takes place on the
-  QUIC Working Group mailing list (quic@ietf.org),
-  which is archived at <a href="https://mailarchive.ietf.org/arch/browse/quic/">https://mailarchive.ietf.org/arch/browse/quic/</a>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
-<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
-  <a href="https://github.com/quicwg/quic-bit-grease">https://github.com/quicwg/quic-bit-grease</a>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+arbitrary value for the second-most significant bit in QUIC packets.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1082,20 +1081,18 @@ arbitrary value for the second-to-most significant bit in QUIC packets.<a href="
 <a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
         </h2>
 <p id="section-boilerplate.1-1">
-        This Internet-Draft is submitted in full conformance with the
-        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+            This is an Internet Standards Track document.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-2">
-        Internet-Drafts are working documents of the Internet Engineering Task
-        Force (IETF). Note that other groups may also distribute working
-        documents as Internet-Drafts. The list of current Internet-Drafts is
-        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+            This document is a product of the Internet Engineering Task Force
+            (IETF).  It represents the consensus of the IETF community.  It has
+            received public review and has been approved for publication by
+            the Internet Engineering Steering Group (IESG).  Further
+            information on Internet Standards is available in Section 2 of 
+            RFC 7841.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-3">
-        Internet-Drafts are draft documents valid for a maximum of six months
-        and may be updated, replaced, or obsoleted by other documents at any
-        time. It is inappropriate to use Internet-Drafts as reference
-        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
-<p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 December 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+            Information about the current status of this document, any
+            errata, and how to provide feedback on it may be obtained at
+            <span><a href="https://www.rfc-editor.org/info/rfc9287">https://www.rfc-editor.org/info/rfc9287</a></span>.<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1170,19 +1167,19 @@ arbitrary value for the second-to-most significant bit in QUIC packets.<a href="
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">QUIC <span>[<a href="#QUIC" class="xref">QUIC</a>]</span> intentionally describes a very narrow set of fields that
-are visible to entities other than endpoints.  Beyond those characteristics that
-are defined as invariant <span>[<a href="#QUIC-INVARIANTS" class="xref">QUIC-INVARIANTS</a>]</span>, very little about the
-"wire image" <span>[<a href="#RFC8546" class="xref">RFC8546</a>]</span> of QUIC is visible.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The second-to-most significant bit of the first byte in every QUIC packet is
-defined as having a fixed value in QUIC version 1 <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>.  The purpose of
-having a fixed value is to allow QUIC to be efficiently distinguished from other
-protocols; see <span>[<a href="#DEMUX" class="xref">DEMUX</a>]</span> for a description of a
-system that might use this property.  As this bit can identify a packet as QUIC,
-it is sometimes referred to as the "QUIC Bit".<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-1">QUIC Invariants <span>[<a href="#QUIC-INV" class="xref">QUIC-INV</a>]</span> intentionally describes a very narrow set
+of fields that are visible to entities other than endpoints.  Beyond those
+characteristics that are invariant, very little about the "wire image"
+<span>[<a href="#RFC8546" class="xref">RFC8546</a>]</span> of QUIC is visible.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The second-most significant bit of the first byte in every QUIC packet is
+defined as having a fixed value in QUIC version 1 <span>[<a href="#QUIC" class="xref">QUIC</a>]</span>.  The
+purpose of having a fixed value is to allow endpoints to efficiently distinguish
+QUIC from other protocols; see <span>[<a href="#DEMUX" class="xref">DEMUX</a>]</span> for a
+description of a system that might use this property.  As this bit can identify
+a packet as QUIC, it is sometimes referred to as the "QUIC Bit".<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Where endpoints and the intermediaries that support them do not depend on the
 QUIC Bit having a fixed value, sending the same value in every packet is more of
-liability than an asset.  If systems come to depend on a fixed value, then it
+a liability than an asset.  If systems come to depend on a fixed value, then it
 might become infeasible to define a version of QUIC that attributes semantics to
 this bit.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">In order to safeguard future use of this bit, this document defines a QUIC
@@ -1210,13 +1207,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-the-grease-quic-bit-transpo">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-the-grease-quic-bit-transpo" class="section-name selfRef">The Grease QUIC Bit Transport Parameter</a>
       </h2>
-<p id="section-3-1">The grease_quic_bit transport parameter (0x2ab2) can be sent by both client and
-server.  The transport parameter is sent with an empty value; an endpoint that
-understands this transport parameter MUST treat receipt of a non-empty value of
-the transport parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">The grease_quic_bit transport parameter (0x2ab2) is defined for QUIC version 1
+<span>[<a href="#QUIC" class="xref">QUIC</a>]</span>.  This transport parameter can be sent by both client and server.  The
+transport parameter is sent with an empty value; an endpoint that understands
+this transport parameter MUST treat receipt of a non-empty value of the
+transport parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">An endpoint that advertises the grease_quic_bit transport parameter MUST accept
 packets with the QUIC Bit set to a value of 0.  The QUIC Bit is defined as the
-second-to-most significant bit of the first byte of QUIC packets (that is, the
+second-most significant bit of the first byte of QUIC packets (that is, the
 value 0x40).<a href="#section-3-2" class="pilcrow">¶</a></p>
 <div id="clearing-the-quic-bit">
 <section id="section-3.1">
@@ -1225,7 +1223,9 @@ value 0x40).<a href="#section-3-2" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-3.1-1">Endpoints that receive the grease_quic_bit transport parameter from a peer
 SHOULD set the QUIC Bit to an unpredictable value unless another extension
-assigns specific meaning to the value of the bit.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+assigns specific meaning to the value of the bit.  When not constrained to
+provide a specific value, endpoints can set the QUIC Bit to a fresh random value
+for each packet.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1-2">Endpoints can set the QUIC Bit to 0 on all packets that are sent after receiving
 and processing transport parameters. This could include Initial, Handshake, and
 Retry packets.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
@@ -1235,11 +1235,11 @@ a client MUST NOT set the QUIC Bit to 0 unless the Initial packets it sends
 include a token provided by the server in a NEW_TOKEN frame (<span><a href="https://rfc-editor.org/rfc/rfc9000#section-19.7" class="relref">Section 19.7</a> of [<a href="#QUIC" class="xref">QUIC</a>]</span>), received less than 604800 seconds (7 days) prior on a connection where
 the server also included the grease_quic_bit transport parameter.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <aside id="section-3.1-4">
-          <p id="section-3.1-4.1">This 7 day limit allows for changes in server configuration.  If server
+          <p id="section-3.1-4.1">This 7-day limit allows for changes in server configuration.  If server
 configuration changes and a client does not set the QUIC Bit, then it is
 possible that a server will drop packets, resulting in connection failures.<a href="#section-3.1-4.1" class="pilcrow">¶</a></p>
 </aside>
-<p id="section-3.1-5">A server MUST set the QUIC bit to 0 only after processing transport parameters
+<p id="section-3.1-5">A server MUST set the QUIC Bit to 0 only after processing transport parameters
 from a client.  A server MUST NOT remember that a client negotiated the
 extension in a previous connection and set the QUIC Bit to 0 based on that
 information.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
@@ -1265,10 +1265,10 @@ Bit MUST negotiate their use prior to acting on any semantic.<a href="#section-3
 addition to the grease_quic_bit transport parameter.  Though the value of the
 QUIC Bit in packets received by a peer might be set according to rules defined
 by the extension, they might also be randomized as specified in this document.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-<p id="section-3.2-4">Receiving a transport parameter for an extension that uses the QUIC Bit could be
+<p id="section-3.2-4">The receipt of a transport parameter for an extension that uses the QUIC Bit could be
 used to confirm that a peer supports the semantic defined in the extension.  To
 avoid acting on a randomized signal, the extension can require that endpoints
-set the QUIC Bit according to the rules of the extension, but defer acting on
+set the QUIC Bit according to the rules of the extension but defer acting on
 the information conveyed until the transport parameter for the extension is
 received.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 <p id="section-3.2-5">Extensions that define semantics for the QUIC Bit can be negotiated without
@@ -1288,7 +1288,9 @@ not supported.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
 entities that can rely on endpoint cooperation.  However, this change makes the
 task of identifying QUIC more difficult without cooperation of endpoints.  This
 sometimes works counter to the security goals of network operators who rely on
-network classification to identify threats.<a href="#section-4-1" class="pilcrow">¶</a></p>
+network classification to identify threats; see
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-manageability-18#section-3.1" class="relref">Section 3.1</a> of [<a href="#MANAGEABILITY" class="xref">MANAGEABILITY</a>]</span> for a more
+comprehensive treatment of this topic.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1317,22 +1319,22 @@ following fields are registered:<a href="#section-5-1" class="pilcrow">¶</a></p
         <dd class="break"></dd>
 <dt id="section-5-2.7">Specification:</dt>
         <dd style="margin-left: 1.5em" id="section-5-2.8">
-          <p id="section-5-2.8.1">This document.<a href="#section-5-2.8.1" class="pilcrow">¶</a></p>
+          <p id="section-5-2.8.1">RFC 9287<a href="#section-5-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-5-2.9">Date:</dt>
         <dd style="margin-left: 1.5em" id="section-5-2.10">
-          <p id="section-5-2.10.1">Date of registration.<a href="#section-5-2.10.1" class="pilcrow">¶</a></p>
+          <p id="section-5-2.10.1">2022-07-13<a href="#section-5-2.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-5-2.11">Contact:</dt>
+<dt id="section-5-2.11">Change Controller:</dt>
         <dd style="margin-left: 1.5em" id="section-5-2.12">
-          <p id="section-5-2.12.1">QUIC Working Group (quic@ietf.org)<a href="#section-5-2.12.1" class="pilcrow">¶</a></p>
+          <p id="section-5-2.12.1">IETF (iesg@ietf.org)<a href="#section-5-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-5-2.13">Change Controller:</dt>
+<dt id="section-5-2.13">Contact:</dt>
         <dd style="margin-left: 1.5em" id="section-5-2.14">
-          <p id="section-5-2.14.1">IETF (iesg@ietf.org)<a href="#section-5-2.14.1" class="pilcrow">¶</a></p>
+          <p id="section-5-2.14.1">QUIC Working Group (quic@ietf.org)<a href="#section-5-2.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-5-2.15">Notes:</dt>
@@ -1356,6 +1358,10 @@ following fields are registered:<a href="#section-5-1" class="pilcrow">¶</a></p
         <dd>
 <span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="QUIC-INV">[QUIC-INV]</dt>
+        <dd>
+<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Version-Independent Properties of QUIC"</span>, <span class="seriesInfo">RFC 8999</span>, <span class="seriesInfo">DOI 10.17487/RFC8999</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8999">https://www.rfc-editor.org/rfc/rfc8999</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
@@ -1373,11 +1379,11 @@ following fields are registered:<a href="#section-5-1" class="pilcrow">¶</a></p
 <dl class="references">
 <dt id="DEMUX">[DEMUX]</dt>
         <dd>
-<span class="refAuthor">Aboba, B.</span>, <span class="refAuthor">Salgueiro, G.</span>, and <span class="refAuthor">C. Perkins</span>, <span class="refTitle">"Multiplexing Scheme Updates for QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-avtcore-rfc7983bis-04</span>, <time datetime="2022-05-12" class="refDate">12 May 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-avtcore-rfc7983bis-04">https://datatracker.ietf.org/doc/html/draft-ietf-avtcore-rfc7983bis-04</a>&gt;</span>. </dd>
+<span class="refAuthor">Aboba, B.</span>, <span class="refAuthor">Salgueiro, G.</span>, and <span class="refAuthor">C. Perkins</span>, <span class="refTitle">"Multiplexing Scheme Updates for QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-avtcore-rfc7983bis-05</span>, <time datetime="2022-06-30" class="refDate">30 June 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-avtcore-rfc7983bis-05">https://datatracker.ietf.org/doc/html/draft-ietf-avtcore-rfc7983bis-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="QUIC-INVARIANTS">[QUIC-INVARIANTS]</dt>
+<dt id="MANAGEABILITY">[MANAGEABILITY]</dt>
         <dd>
-<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Version-Independent Properties of QUIC"</span>, <span class="seriesInfo">RFC 8999</span>, <span class="seriesInfo">DOI 10.17487/RFC8999</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8999">https://www.rfc-editor.org/rfc/rfc8999</a>&gt;</span>. </dd>
+<span class="refAuthor">Kuehlewind, M.</span> and <span class="refAuthor">B. Trammell</span>, <span class="refTitle">"Manageability of the QUIC Transport Protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-manageability-18</span>, <time datetime="2022-07-15" class="refDate">15 July 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-manageability-18">https://datatracker.ietf.org/doc/html/draft-ietf-quic-manageability-18</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8546">[RFC8546]</dt>
         <dd>
