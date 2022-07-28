@@ -50,7 +50,7 @@ QUIC, it is sometimes referred to as the "QUIC Bit".
 
 Where endpoints and the intermediaries that support them do not depend on the
 QUIC Bit having a fixed value, sending the same value in every packet is more of
-liability than an asset.  If systems come to depend on a fixed value, then it
+a liability than an asset.  If systems come to depend on a fixed value, then it
 might become infeasible to define a version of QUIC that attributes semantics to
 this bit.
 
