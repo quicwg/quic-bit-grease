@@ -2,14 +2,17 @@
 title: "Greasing the QUIC Bit"
 docname: draft-ietf-quic-bit-grease-latest
 category: std
+number: 9287
+stream: IETF
+consensus: true
 
-ipr: trust200902
 area: TSV
 workgroup: quic
-keyword: Internet-Draft
+keyword:
+ - Header
+ - Path signal
 
-stand_alone: yes
-pi: [toc, sortrefs, symrefs]
+v: 3
 
 author:
  -
@@ -26,28 +29,28 @@ informative:
 --- abstract
 
 This document describes a method for negotiating the ability to send an
-arbitrary value for the second-to-most significant bit in QUIC packets.
+arbitrary value for the second-most significant bit in QUIC packets.
 
 
 --- middle
 
 # Introduction
 
-QUIC {{!QUIC=RFC9000}} intentionally describes a very narrow set of fields that
-are visible to entities other than endpoints.  Beyond those characteristics that
-are defined as invariant {{?QUIC-INVARIANTS=RFC8999}}, very little about the
-"wire image" {{?RFC8546}} of QUIC is visible.
+The version-independent definition of QUIC {{!QUIC-INVARIANTS=RFC8999}}
+intentionally describes a very narrow set of fields that are visible to
+entities other than endpoints.  Beyond those characteristics that are
+invariant, very little about the "wire image" {{?RFC8546}} of QUIC is visible.
 
-The second-to-most significant bit of the first byte in every QUIC packet is
-defined as having a fixed value in QUIC version 1 {{!QUIC}}.  The purpose of
-having a fixed value is to allow endpoints to efficiently distinguish QUIC from
-other protocols; see {{?DEMUX=I-D.ietf-avtcore-rfc7983bis}} for a description of
-a system that might use this property.  As this bit can identify a packet as
-QUIC, it is sometimes referred to as the "QUIC Bit".
+The second-most significant bit of the first byte in every QUIC packet is
+defined as having a fixed value in QUIC version 1 {{!QUIC=RFC9000}}.  The
+purpose of having a fixed value is to allow endpoints to efficiently distinguish
+QUIC from other protocols; see {{?DEMUX=I-D.ietf-avtcore-rfc7983bis}} for a
+description of a system that might use this property.  As this bit can identify
+a packet as QUIC, it is sometimes referred to as the "QUIC Bit".
 
 Where endpoints and the intermediaries that support them do not depend on the
 QUIC Bit having a fixed value, sending the same value in every packet is more of
-liability than an asset.  If systems come to depend on a fixed value, then it
+a liability than an asset.  If systems come to depend on a fixed value, then it
 might become infeasible to define a version of QUIC that attributes semantics to
 this bit.
 
@@ -67,14 +70,15 @@ This document uses terms and notational conventions from {{QUIC}}.
 
 # The Grease QUIC Bit Transport Parameter
 
-The grease_quic_bit transport parameter (0x2ab2) can be sent by both client and
-server.  The transport parameter is sent with an empty value; an endpoint that
-understands this transport parameter MUST treat receipt of a non-empty value of
-the transport parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.
+The grease_quic_bit transport parameter (0x2ab2) is defined for QUIC version 1
+{{!QUIC}}.  This transport parameter can be sent by both client and server.  The
+transport parameter is sent with an empty value; an endpoint that understands
+this transport parameter MUST treat receipt of a non-empty value of the
+transport parameter as a connection error of type TRANSPORT_PARAMETER_ERROR.
 
 An endpoint that advertises the grease_quic_bit transport parameter MUST accept
 packets with the QUIC Bit set to a value of 0.  The QUIC Bit is defined as the
-second-to-most significant bit of the first byte of QUIC packets (that is, the
+second-most significant bit of the first byte of QUIC packets (that is, the
 value 0x40).
 
 
@@ -98,11 +102,11 @@ QUIC}}), received less than 604800 seconds (7 days) prior on a connection where
 the server also included the grease_quic_bit transport parameter.
 
 {:aside}
-> This 7 day limit allows for changes in server configuration.  If server
+> This 7-day limit allows for changes in server configuration.  If server
 > configuration changes and a client does not set the QUIC Bit, then it is
 > possible that a server will drop packets, resulting in connection failures.
 
-A server MUST set the QUIC bit to 0 only after processing transport parameters
+A server MUST set the QUIC Bit to 0 only after processing transport parameters
 from a client.  A server MUST NOT remember that a client negotiated the
 extension in a previous connection and set the QUIC Bit to 0 based on that
 information.
@@ -129,10 +133,10 @@ addition to the grease_quic_bit transport parameter.  Though the value of the
 QUIC Bit in packets received by a peer might be set according to rules defined
 by the extension, they might also be randomized as specified in this document.
 
-Receiving a transport parameter for an extension that uses the QUIC Bit could be
+The receipt of a transport parameter for an extension that uses the QUIC Bit could be
 used to confirm that a peer supports the semantic defined in the extension.  To
 avoid acting on a randomized signal, the extension can require that endpoints
-set the QUIC Bit according to the rules of the extension, but defer acting on
+set the QUIC Bit according to the rules of the extension but defer acting on
 the information conveyed until the transport parameter for the extension is
 received.
 
@@ -169,16 +173,16 @@ Status:
 : Permanent
 
 Specification:
-: This document.
+: RFC 9287
 
 Date:
-: Date of registration.
-
-Contact:
-: QUIC Working Group (quic@ietf.org)
+: 2022-07-13
 
 Change Controller:
 : IETF (iesg@ietf.org)
+
+Contact:
+: QUIC Working Group (quic@ietf.org)
 
 Notes:
 : (none)
